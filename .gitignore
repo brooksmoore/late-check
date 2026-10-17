@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+data/
+models/
+*.lock
+out/holdout_predictions.csv
+out/report.csv
+out/report.md
+out/report.html
+out/report.png
+out/clean_run.log
+out/repeat_run/clean_run.log

@@ -1,0 +1,8 @@
+# Tested with Python 3.13 on Linux, CPU only.
+# CPU-only torch first: pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+tabpfn==9.1.0
+numpy==2.5.4
+pandas==3.0.6
+scikit-learn==1.9.1
+matplotlib==3.11.2

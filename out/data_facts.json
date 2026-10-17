@@ -1,0 +1,19 @@
+{
+ "invoices": 2466,
+ "clients": 100,
+ "invoices_per_client_min_median_max": [
+  15,
+  24,
+  36
+ ],
+ "terms_days_values": [
+  30
+ ],
+ "amount_min": 5.26,
+ "amount_max": 128.28,
+ "amount_median": 60.56,
+ "late_share": 0.356,
+ "days_late_median_if_late": 8.0,
+ "days_late_max": 45,
+ "disputed_share": 0.227
+}

@@ -1,0 +1,13 @@
+{
+ "as_of": "2013-11-01",
+ "not_yet_due_invoices": 67,
+ "actually_late": 21,
+ "top20pct_size": 14,
+ "top20pct_actually_late": 9,
+ "flagged_p_late_ge_50": 19,
+ "flagged_actually_late": 12,
+ "late_not_flagged": 9,
+ "mean_days_late_flagged_and_late": 7.3,
+ "overdue_on_as_of": 12,
+ "note": "One snapshot; small sample. The holdout in results.md is the real test."
+}

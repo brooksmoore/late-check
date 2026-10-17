@@ -1,0 +1,219 @@
+{
+ "dispute_effect": {
+  "test_disputed_share": 0.228,
+  "test_late_share_if_disputed": 0.623,
+  "test_late_share_if_not_disputed": 0.205
+ },
+ "dataset": {
+  "file": "WA_Fn-UseC_-Accounts-Receivable.csv",
+  "invoices": 2466,
+  "clients": 100,
+  "issued_from": "2012-01-03",
+  "issued_to": "2013-12-02",
+  "late_share_all": 0.356
+ },
+ "split": {
+  "cutoff": "2013-04-01",
+  "train": {
+   "rows": 1500,
+   "late_share": 0.373,
+   "issued": [
+    "2012-01-03",
+    "2013-03-23"
+   ]
+  },
+  "test": {
+   "rows": 872,
+   "late_share": 0.3,
+   "issued": [
+    "2013-04-01",
+    "2013-12-02"
+   ],
+   "late_invoices": 262
+  },
+  "excluded_issued_before_cutoff_but_paid_after": 94
+ },
+ "holdout": {
+  "Everyone gets the overall late rate": {
+   "auc": 0.5,
+   "brier": 0.215,
+   "log_loss": 0.623,
+   "top20_late_caught": 0.214,
+   "top20_late_dollars_caught": 0.205,
+   "top20_precision": 0.32
+  },
+  "Client's past late rate": {
+   "auc": 0.866,
+   "brier": 0.139,
+   "log_loss": 0.435,
+   "top20_late_caught": 0.5,
+   "top20_late_dollars_caught": 0.51,
+   "top20_precision": 0.749
+  },
+  "Gradient boosting (sklearn defaults)": {
+   "auc": 0.896,
+   "brier": 0.12,
+   "log_loss": 0.405,
+   "top20_late_caught": 0.523,
+   "top20_late_dollars_caught": 0.554,
+   "top20_precision": 0.783
+  },
+  "Gradient boosting without the dispute flag": {
+   "auc": 0.851,
+   "brier": 0.146,
+   "log_loss": 0.489,
+   "top20_late_caught": 0.489,
+   "top20_late_dollars_caught": 0.497,
+   "top20_precision": 0.731
+  },
+  "TabPFN-v2 (Late Check)": {
+   "auc": 0.914,
+   "brier": 0.105,
+   "log_loss": 0.34,
+   "top20_late_caught": 0.569,
+   "top20_late_dollars_caught": 0.553,
+   "top20_precision": 0.851
+  },
+  "TabPFN-v2 without the dispute flag": {
+   "auc": 0.875,
+   "brier": 0.134,
+   "log_loss": 0.428,
+   "top20_late_caught": 0.504,
+   "top20_late_dollars_caught": 0.508,
+   "top20_precision": 0.754
+  }
+ },
+ "tabpfn_very_late": {
+  "definition": ">= 8 days late",
+  "test_share": 0.138,
+  "auc": 0.913,
+  "brier": 0.074
+ },
+ "tabpfn_calibration": [
+  {
+   "bin": "0.0-0.2",
+   "n": 476,
+   "mean_pred": 0.056,
+   "observed_late": 0.05
+  },
+  {
+   "bin": "0.2-0.4",
+   "n": 120,
+   "mean_pred": 0.286,
+   "observed_late": 0.283
+  },
+  {
+   "bin": "0.4-0.6",
+   "n": 88,
+   "mean_pred": 0.506,
+   "observed_late": 0.534
+  },
+  {
+   "bin": "0.6-0.8",
+   "n": 110,
+   "mean_pred": 0.694,
+   "observed_late": 0.791
+  },
+  {
+   "bin": "0.8-1.0",
+   "n": 78,
+   "mean_pred": 0.893,
+   "observed_late": 0.897
+  }
+ ],
+ "gradient_boosting_calibration": [
+  {
+   "bin": "0.0-0.2",
+   "n": 518,
+   "mean_pred": 0.041,
+   "observed_late": 0.066
+  },
+  {
+   "bin": "0.2-0.4",
+   "n": 67,
+   "mean_pred": 0.278,
+   "observed_late": 0.343
+  },
+  {
+   "bin": "0.4-0.6",
+   "n": 46,
+   "mean_pred": 0.49,
+   "observed_late": 0.609
+  },
+  {
+   "bin": "0.6-0.8",
+   "n": 80,
+   "mean_pred": 0.713,
+   "observed_late": 0.6
+  },
+  {
+   "bin": "0.8-1.0",
+   "n": 161,
+   "mean_pred": 0.935,
+   "observed_late": 0.801
+  }
+ ],
+ "paired_bootstrap": {
+  "tabpfn_minus_gradient_boosting": {
+   "auc_diff": 0.018,
+   "auc_diff_95ci": [
+    0.007,
+    0.029
+   ],
+   "top20_capture_diff": 0.046,
+   "top20_capture_diff_95ci": [
+    0.015,
+    0.082
+   ],
+   "resamples": 2000
+  },
+  "tabpfn_minus_client_rate": {
+   "auc_diff": 0.048,
+   "auc_diff_95ci": [
+    0.029,
+    0.068
+   ],
+   "top20_capture_diff": 0.071,
+   "top20_capture_diff_95ci": [
+    0.034,
+    0.11
+   ],
+   "resamples": 2000
+  },
+  "tabpfn_no_dispute_minus_gradient_boosting_no_dispute": {
+   "auc_diff": 0.024,
+   "auc_diff_95ci": [
+    0.007,
+    0.039
+   ],
+   "top20_capture_diff": 0.013,
+   "top20_capture_diff_95ci": [
+    -0.013,
+    0.04
+   ],
+   "resamples": 2000
+  },
+  "tabpfn_no_dispute_minus_client_rate": {
+   "auc_diff": 0.009,
+   "auc_diff_95ci": [
+    -0.002,
+    0.019
+   ],
+   "top20_capture_diff": 0.01,
+   "top20_capture_diff_95ci": [
+    -0.021,
+    0.039
+   ],
+   "resamples": 2000
+  }
+ },
+ "cpu_seconds_fit_and_score": {
+  "gradient_boosting": 0.3,
+  "tabpfn": 8.0,
+  "tabpfn_no_dispute": 7.7
+ },
+ "top_share": 0.2,
+ "random_chasing_expected_capture": 0.2,
+ "top20_slots": 175,
+ "top20_capture_ceiling": 0.668
+}

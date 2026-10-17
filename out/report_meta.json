@@ -1,0 +1,8 @@
+{
+ "as_of": "2013-11-01",
+ "history_invoices": 2273,
+ "history_late_share": 0.358,
+ "open_invoices": 79,
+ "overdue": 12,
+ "model": "TabPFN-v2 classifier (3 classes)"
+}
